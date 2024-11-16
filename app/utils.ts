@@ -279,12 +279,15 @@ export function isDalle3(model: string) {
 }
 
 export function showPlugins(provider: ServiceProvider, model: string) {
+  if (provider == ServiceProvider.OpenRouter) {
+    [provider, model] = model.split('/') as [ServiceProvider, string];
+  }
+  
   if (
     provider == ServiceProvider.OpenAI ||
     provider == ServiceProvider.Azure ||
     provider == ServiceProvider.Moonshot ||
-    provider == ServiceProvider.ChatGLM ||
-    provider == ServiceProvider.OpenRouter
+    provider == ServiceProvider.ChatGLM 
   ) {
     return true;
   }
