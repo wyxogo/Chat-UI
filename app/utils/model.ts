@@ -43,9 +43,10 @@ const sortModelTable = (models: ReturnType<typeof collectModels>) =>
  * @param modelWithProvider model name with provider separated by last `@` char,
  * @returns [model, provider] tuple, if no `@` char found, provider is undefined
  */
+
 export function getModelProvider(modelWithProvider: string): [string, string?] {
   const [model, provider] = modelWithProvider.split(/@(?!.*@)/);
-  return [model, provider];
+  return [model, modelWithProvider.includes("/") ? "OpenRouter" : provider];
 }
 
 export function collectModelTable(

@@ -283,7 +283,8 @@ export function showPlugins(provider: ServiceProvider, model: string) {
     provider == ServiceProvider.OpenAI ||
     provider == ServiceProvider.Azure ||
     provider == ServiceProvider.Moonshot ||
-    provider == ServiceProvider.ChatGLM
+    provider == ServiceProvider.ChatGLM ||
+    provider == ServiceProvider.OpenRouter
   ) {
     return true;
   }
@@ -291,9 +292,6 @@ export function showPlugins(provider: ServiceProvider, model: string) {
     return true;
   }
   if (provider == ServiceProvider.Google && !model.includes("vision")) {
-    return true;
-  }
-  if (model.includes("/")) {
     return true;
   }
   return false;
