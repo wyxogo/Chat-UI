@@ -472,22 +472,14 @@ export function ChatActions(props: {
   const session = chatStore.currentSession();
 
   // switch themes
-  const theme = config.theme;
-  function nextTheme() {
-    const themes = [Theme.Light, Theme.Dark];
-    const currentTheme = theme === Theme.Auto 
-      ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.Dark : Theme.Light)
-      : theme;
-      
-    const themeIndex = themes.indexOf(currentTheme);
-    const nextIndex = (themeIndex + 1) % themes.length;
-    const nextTheme = themes[nextIndex];
-    
-    config.update((config) => (config.theme = nextTheme));
-  }
-
-
-
+  // const theme = config.theme;
+  // function nextTheme() {
+  //   const themes = [Theme.Auto, Theme.Light, Theme.Dark];
+  //   const themeIndex = themes.indexOf(theme);
+  //   const nextIndex = (themeIndex + 1) % themes.length;
+  //   const nextTheme = themes[nextIndex];
+  //   config.update((config) => (config.theme = nextTheme));
+  // }
 
   // stop all responses
   const couldStop = ChatControllerPool.hasPending();
@@ -595,7 +587,7 @@ export function ChatActions(props: {
             icon={props.uploading ? <LoadingButtonIcon /> : <ImageIcon />}
           />
         )}
-        <ChatAction
+        {/* <ChatAction
           onClick={nextTheme}
           text={Locale.Chat.InputActions.Theme[theme]}
           icon={
@@ -609,7 +601,7 @@ export function ChatActions(props: {
               ) : null}
             </>
           }
-        />
+        /> */}
 
         <ChatAction
           onClick={props.showPromptHints}

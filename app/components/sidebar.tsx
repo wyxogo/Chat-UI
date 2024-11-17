@@ -228,12 +228,17 @@ export function SideBar(props: { className?: string }) {
   const config = useAppConfig();
   const chatStore = useChatStore();
 
-  const { theme } = config;
+  // switch themes
+  const theme = config.theme;
   function nextTheme() {
-    const themes = [Theme.Auto, Theme.Light, Theme.Dark];
-    const themeIndex = themes.indexOf(theme);
+    const themes = [Theme.Light, Theme.Dark];
+    const currentTheme = theme === Theme.Auto 
+      ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.Dark : Theme.Light)
+      : theme;
+    const themeIndex = themes.indexOf(currentTheme);
     const nextIndex = (themeIndex + 1) % themes.length;
     const nextTheme = themes[nextIndex];
+    
     config.update((config) => (config.theme = nextTheme));
   }
 
