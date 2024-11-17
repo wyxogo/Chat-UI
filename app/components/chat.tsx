@@ -477,12 +477,12 @@ export function ChatActions(props: {
     const themes = [Theme.Auto, Theme.Light, Theme.Dark];
     const themeIndex = themes.indexOf(theme);
     const nextIndex = (themeIndex + 1) % themes.length;
-    if (themes[nextIndex] === Theme.Auto) {
-      nextIndex = (nextIndex + 1) % themes.length;
-    }
-    const nextTheme = themes[nextIndex];
+    
+    const nextTheme = themes[nextIndex === 0 ? 1 : nextIndex];
     config.update((config) => (config.theme = nextTheme));
   }
+
+
 
   // stop all responses
   const couldStop = ChatControllerPool.hasPending();
