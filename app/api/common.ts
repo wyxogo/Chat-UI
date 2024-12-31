@@ -94,6 +94,8 @@ export async function requestOpenai(req: NextRequest) {
     headers: {
       "Content-Type": "application/json",
       "Cache-Control": "no-store",
+      "HTTP-Referer": "https://chat.aifu.tech",
+      "X-Title": "AIFx",
       [authHeaderName]: authValue,
       ...(serverConfig.openaiOrgId && {
         "OpenAI-Organization": serverConfig.openaiOrgId,
